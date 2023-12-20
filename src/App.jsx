@@ -3,7 +3,9 @@ import axios from "axios";
 import "./App.css";
 
 function App() {
-  const [rosters, setRosters] = useState(null);
+  const [rosters, setRosters] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     axios
