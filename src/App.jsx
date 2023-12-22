@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
+import Player from "./components/Player";
+// import PlayerList from "./components/PlayerList";
 
 function App() {
   const [rosters, setRosters] = useState([]);
@@ -18,7 +20,7 @@ function App() {
         },
       })
       .then((response) => {
-        setRosters(response.data.rosters || []); // Update state with the response data
+        setRosters(response.data.rosters || []);
         setLoading(false);
       })
       .catch((error) => {
@@ -26,7 +28,7 @@ function App() {
         setError(error);
         setLoading(false);
       });
-  }, []); // Empty dependency array means this effect runs once on mount
+  }, []);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -38,6 +40,8 @@ function App() {
 
   const [firstRoster, secondRoster, thirdRoster, fourthRoster] = rosters;
 
+  // console.table(rosters);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -45,6 +49,7 @@ function App() {
         <p>{secondRoster?.team.name}</p>
         <p>{thirdRoster?.team.name}</p>
         <p>{fourthRoster?.team.name}</p>
+        <Player player={firstRoster?.players[0].proPlayer} />
       </header>
     </div>
   );
