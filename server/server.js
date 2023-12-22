@@ -27,7 +27,24 @@ app.get("/api/league-rosters", (req, res) => {
     });
 });
 
-// ...rest of your server.js code
+app.get("/api/roster", (req, res) => {
+  axios
+    .get(`${config.apiBaseUrl}${config.endpoints.roster}`, {
+      params: {
+        ...config.commonParams,
+        team_id: req.query.team_id, // This is specific to the roster endpoint
+        ...req.query,
+      },
+    })
+    .then((apiResponse) => {
+      res.send(apiResponse.data);
+    })
+    .catch((error) => {
+      res
+        .status(500)
+        .send("Error fetching from Fleaflicker API: " + error.message);
+    });
+});
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
