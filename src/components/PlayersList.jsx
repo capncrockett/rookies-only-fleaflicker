@@ -1,13 +1,20 @@
+// PlayersList.jsx
 import React from "react";
-import Player from "./Player"; // Make sure the path is correct
+import Player from "./Player"; // Import the Player component
 
 const PlayersList = ({ players }) => {
+  if (!players || players.length === 0) {
+    return <p>No players available</p>;
+  }
+
   return (
-    <div className="players-list">
+    <ul>
       {players.map((player, index) => (
-        <Player key={index} player={player.pro_player} />
+        <li key={index}>
+          <Player player={player} /> {/* Use the Player component */}
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 
