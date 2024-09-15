@@ -2,12 +2,14 @@
 const API_BASE_URL = "https://www.fleaflicker.com/api";
 const LEAGUE_ROSTERS_ENDPOINT = "/FetchLeagueRosters";
 const ROSTER_ENDPOINT = "/FetchRoster";
+const LEAGUE_RULES_ENDPOINT = "/FetchLeagueRules";
 
 const config = {
   apiBaseUrl: API_BASE_URL,
   endpoints: {
     leagueRosters: LEAGUE_ROSTERS_ENDPOINT,
     roster: ROSTER_ENDPOINT,
+    leagueRules: LEAGUE_RULES_ENDPOINT,
   },
   commonParams: {
     sport: "NFL",

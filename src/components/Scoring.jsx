@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./App.css";
-import Player from "./components/Player";
-import ScoringPeriodRange from "./components/Scoring";
-// import PlayerList from "./components/PlayerList";
 
-function App() {
-  const [rosters, setRosters] = useState([]);
+const ScoringPeriodRange = () => {
+  const [scoringPeriodRange, setScoringPeriodRange] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -21,7 +17,7 @@ function App() {
         },
       })
       .then((response) => {
-        setRosters(response.data.rosters || []);
+        setScoringPeriodRange(response.data.rosters || []);
         setLoading(false);
       })
       .catch((error) => {
@@ -38,23 +34,15 @@ function App() {
   if (error) {
     return <div>Error fetching rosters: {error.message}</div>;
   }
-
-  const [firstRoster, secondRoster, thirdRoster, fourthRoster] = rosters;
-
-  // console.table(rosters);
+  console.table(scoringPeriodRange);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <ScoringPeriodRange />
-        <p>{firstRoster?.team.name}</p>
-        <p>{secondRoster?.team.name}</p>
-        <p>{thirdRoster?.team.name}</p>
-        <p>{fourthRoster?.team.name}</p>
-        <Player player={firstRoster?.players[0].proPlayer} />
-      </header>
+    <div>
+      {/* Render your scoring period range data here */}
+      <h3>This should be the scoring div</h3>
+      <p>{scoringPeriodRange.players}</p>
     </div>
   );
-}
+};
 
-export default App;
+export default ScoringPeriodRange;

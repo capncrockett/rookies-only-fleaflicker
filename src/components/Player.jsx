@@ -3,8 +3,8 @@ import React from "react";
 const Player = ({ player }) => {
   const { nameFull, position, proTeamAbbreviation, isRookie } = player;
 
-  console.log(player);
-  console.table(player);
+  //   console.log(player);
+  //   console.table(player);
 
   return (
     <div className="player-card">
