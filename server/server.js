@@ -7,67 +7,6 @@ import config from "../config.js"; // Adjust the path as needed
 const app = express();
 app.use(cors()); // Enable CORS
 
-// Get the league rosters
-app.get("/api/league-rosters", (req, res) => {
-  console.log("req.query", req.query); // Log the request query
-  axios
-    .get(`${config.apiBaseUrl}${config.endpoints.leagueRosters}`, {
-      params: {
-        ...config.commonParams, // Spread the common params from your config
-        ...req.query, // This will include and override any params in the request
-      },
-    })
-    .then((apiResponse) => {
-      res.send(apiResponse.data);
-    })
-    .catch((error) => {
-      console.error(error);
-      res
-        .status(500)
-        .send("Error fetching from Fleaflicker API: " + error.message);
-    });
-});
-
-// Get a specific roster
-app.get("/api/roster", (req, res) => {
-  axios
-    .get(`${config.apiBaseUrl}${config.endpoints.roster}`, {
-      params: {
-        ...config.commonParams,
-        team_id: req.query.team_id,
-        ...req.query,
-      },
-    })
-    .then((apiResponse) => {
-      res.send(apiResponse.data);
-    })
-    .catch((error) => {
-      res
-        .status(500)
-        .send("Error fetching from Fleaflicker API: " + error.message);
-    });
-});
-
-// Get Scoring Period Range
-app.get("/api/league-rules", (req, res) => {
-  console.log("req.query", req.query);
-  axios
-    .get(`${config.apiBaseUrl}${config.endpoints.leagueRules}`, {
-      params: {
-        ...config.commonParams,
-        ...req.query,
-      },
-    })
-    .then((apiResponse) => {
-      res.send(apiResponse.data);
-    })
-    .catch((error) => {
-      res
-        .status(500)
-        .send("Error fetching from Fleaflicker API: " + error.message);
-    });
-});
-
 // Get Player List
 app.get("/api/player-listing", (req, res) => {
   const params = {

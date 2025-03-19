@@ -12,7 +12,7 @@ const ScoringPeriodRange = () => {
         params: {
           sport: "NFL",
           league_id: 343168,
-          season: 2023,
+          season: 2024,
           // Add any other parameters
         },
       })

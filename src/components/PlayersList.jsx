@@ -1,6 +1,7 @@
 // PlayersList.jsx
-import React from "react";
-import Player from "./Player"; // Import the Player component
+import * as React from "react";
+import List from "@mui/material/List";
+import Player from "./Player";
 
 const PlayersList = ({ players }) => {
   if (!players || players.length === 0) {
@@ -8,13 +9,11 @@ const PlayersList = ({ players }) => {
   }
 
   return (
-    <ul>
+    <List sx={{ width: "100%" }}>
       {players.map((player, index) => (
-        <li key={index}>
-          <Player player={player} /> {/* Use the Player component */}
-        </li>
+        <Player key={index} player={player} />
       ))}
-    </ul>
+    </List>
   );
 };
 
